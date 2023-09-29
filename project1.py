@@ -18,20 +18,26 @@ def main():
   i = 0
   while i < len(lines):
     busy_schedule1 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
-    busy_schedule1 = [ [start, end] for start, end in busy_schedule1]
+    busy_schedule1 = [[start, end] for start, end in busy_schedule1]
+
     i += 1
 
-    working_period1 = lines[i].strip()[1:-1].split(',')
+    # Parse working period as list instead of string
+    working_period1 = lines[i].strip()[2:-2].split("','")
+
     i += 1
 
     busy_schedule2 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
-    busy_schedule2 = [ [start, end] for start, end in busy_schedule2]
+    busy_schedule2 = [[start, end] for start, end in busy_schedule2]
+
     i += 1
 
-    working_period2 = lines[i].strip()[1:-1].split(',')
+    working_period2 = lines[i].strip()[2:-2].split("','")
+
     i += 1
 
     duration = int(lines[i])
+
     i += 1
 
     # Do something with the extracted info
