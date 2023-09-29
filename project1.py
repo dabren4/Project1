@@ -7,22 +7,40 @@ schedule = [[1], [2]]
 # schedule = [['12:00':'13:00'],['14:00':'15:00']]
 
 # read file
+# assuming there is only two people per meeting
+
+import re
 
 def main():
-  file = open('input.txt', 'r')
-  read = file.readlines()
-  file.close()
+  with open('input.txt') as f:
+    lines = f.readlines()
 
-  duration = 0
-  n = 1
+  i = 0
+  while i < len(lines):
+    busy_schedule1 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
+    busy_schedule1 = [ [start, end] for start, end in busy_schedule1]
+    i += 1
 
-  for line in read:
-    line = line.strip()
+    working_period1 = lines[i].strip()[1:-1].split(',')
+    i += 1
 
-    #sets the duration
-    if line.isdigit():  # Check if the line is a valid integer
-      duration = int(line)
-  print(duration)
+    busy_schedule2 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
+    busy_schedule2 = [ [start, end] for start, end in busy_schedule2]
+    i += 1
+
+    working_period2 = lines[i].strip()[1:-1].split(',')
+    i += 1
+
+    duration = int(lines[i])
+    i += 1
+
+    # Do something with the extracted info
+
+    print(busy_schedule1)
+    print(working_period1)
+    print(busy_schedule2)
+    print(working_period2)
+    print(duration)
 
 
 
