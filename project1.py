@@ -56,8 +56,8 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
   availability = []
 
   #get minimum working time
-  start_time = max(Busy_schedule[0], Busy_schedule2[0])
-  end_time = min(Busy_schedule[len(Busy_schedule) - 1], Busy_schedule2[len(Busy_schedule2) - 1])
+  start_time = max(Working_period[0], Working_period2[0])
+  end_time = min(Working_period[len(Working_period) - 1], Working_period2[len(Working_period2) - 1])
 
   #get the baseline schedule
   baseschedule = [start_time, end_time]
