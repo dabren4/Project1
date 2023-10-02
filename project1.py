@@ -42,12 +42,12 @@ while i < len(lines):
 
 
   #print to check
-  print(busy_schedule1)
-  print(working_period1)
-  print(busy_schedule2)
-  print(working_period2)
-  print(duration)
-  print(" ")
+  # print(busy_schedule1)
+  # print(working_period1)
+  # print(busy_schedule2)
+  # print(working_period2)
+  # print(duration)
+  # print(" ")
 
 
 
@@ -67,20 +67,22 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
   #get the busy times
   busy_times = Busy_schedule + Busy_schedule2
 
-  #trim the busy times off the baseline schedule
-  for i in busy_times:
-    for interval in busy_times:
-      if interval > start_time and interval < end_time:
-        s, e = busy_times.remove(interval)
-        availability.append([s, i.s])
-        availability.append([e, i.e])
-      #set the interval now to e since we have to trim off the first part
-      if interval < start_time:
-        interval.s = i.e
-      #reverse it
-      if interval > end_time:
-        interval.e = i.s
+  current_time = start_time
+
+  for interval in busy_times:
+
+    # Find availability before this busy time
+    if interval[0] > current_time:
+      availability.append([current_time, interval[0]])
+
+    # Update current time
+    current_time = interval[1]
+
+  # Add any remaining availability
+  if current_time < end_time:
+     availability.append([current_time, end_time])
 
   return availability
 
-Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
+result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
+print("result is ", result)
