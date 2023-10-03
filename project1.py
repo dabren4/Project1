@@ -3,19 +3,17 @@
 
 # Project 1 CPSC 335
 
-schedule = [[1], [2]]
-# schedule = [['12:00':'13:00'],['14:00':'15:00']]
-
 # read file
 # assuming there is only two people per meeting
 
 import re
 
-
 with open('input.txt') as f:
   lines = f.readlines()
 
 i = 0
+test_cases = []
+
 while i < len(lines):
   busy_schedule1 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
   busy_schedule1 = [[start, end] for start, end in busy_schedule1]
