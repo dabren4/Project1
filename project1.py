@@ -18,34 +18,21 @@ while i < len(lines):
   busy_schedule1 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
   busy_schedule1 = [[start, end] for start, end in busy_schedule1]
 
-  i += 1
+  # Parse as list instead of string
+  working_period1 = lines[i+1].strip()[2:-2].split("','")
 
-  # Parse working period as list instead of string
-  working_period1 = lines[i].strip()[2:-2].split("','")
-
-  i += 1
-
-  busy_schedule2 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i])
+  busy_schedule2 = re.findall(r"'(\d+:\d+)':'(\d+:\d+)'", lines[i+2])
   busy_schedule2 = [[start, end] for start, end in busy_schedule2]
 
-  i += 1
+  working_period2 = lines[i+3].strip()[2:-2].split("','")
 
-  working_period2 = lines[i].strip()[2:-2].split("','")
+  duration = int(lines[i+4])
 
-  i += 1
+  test_cases.append((busy_schedule1, working_period1,
+                    busy_schedule2, working_period2,
+                    duration))
 
-  duration = int(lines[i])
-
-  i += 1
-
-
-  #print to check
-  # print(busy_schedule1)
-  # print(working_period1)
-  # print(busy_schedule2)
-  # print(working_period2)
-  # print(duration)
-  # print(" ")
+  i += 5
 
 
 
@@ -84,3 +71,4 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
 
 result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
 print("result is ", result)
+print(test_cases)
