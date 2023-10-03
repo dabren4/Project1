@@ -34,6 +34,10 @@ while i < len(lines):
 
   i += 5
 
+# convert the list string into minutes to calc duration later
+def convert_time(time_str):
+  hours, minutes = time_str.split(':')
+  return int(hours) * 60 + int(minutes)
 
 
 
@@ -47,8 +51,6 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
   #get the baseline schedule
   baseschedule = [start_time, end_time]
 
-  print(baseschedule)
-
   #get the busy times
   busy_times = Busy_schedule + Busy_schedule2
 
@@ -58,7 +60,11 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
 
     # Find availability before this busy time
     if interval[0] > current_time:
-      availability.append([current_time, interval[0]])
+      start = convert_time(current_time)
+      end = convert_time(interval[0])
+
+      if (end - start) >= duration:
+        availability.append([current_time, interval[0]])
 
     # Update current time
     current_time = interval[1]
@@ -69,6 +75,9 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
 
   return availability
 
-result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
-print("result is ", result)
-print(test_cases)
+# goes thru all the test cases
+for case in test_cases:
+  busy_schedule1, working_period1, busy_schedule2, working_period2, duration = case
+
+  result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
+  print("result is ", result)
