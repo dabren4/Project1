@@ -75,9 +75,12 @@ def Solution(Busy_schedule, Working_period, Busy_schedule2, Working_period2, dur
 
   return availability
 
-# goes thru all the test cases
-for case in test_cases:
-  busy_schedule1, working_period1, busy_schedule2, working_period2, duration = case
+with open('output.txt', 'w') as f:
 
-  result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
-  print("result is ", result)
+
+  # goes thru all the test cases
+  for case in test_cases:
+    busy_schedule1, working_period1, busy_schedule2, working_period2, duration = case
+
+    result = Solution(busy_schedule1, working_period1, busy_schedule2, working_period2, duration)
+    print(result, file=f)
