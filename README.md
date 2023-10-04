@@ -19,7 +19,7 @@ meeting duration
 - Then run the command:
 
 ```
-python3 project1.py
+python3 project1_starter.py
 ```
 
 - Then the program will be output to a text file named output.txt
