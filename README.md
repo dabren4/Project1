@@ -1,5 +1,5 @@
 # Project 1 for Algorithms CPSC335
-This is Project 1 for CPSC335 by Darren Chen
+This is Project 1 for CPSC335 by Darren Chen dchen4@csu.fullerton.edu
 
 This program finds available meeting times that fit a given duration based on people's busy schedules.
 
